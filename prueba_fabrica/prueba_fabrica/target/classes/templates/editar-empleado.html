@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Empleado</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    
+    <form th:action="@{/empleados/actualizar/{id}(id=${employee.employeesId})}" method="post">
+        <input type="hidden" name="employeesId" th:value="${employee.employeesId}">
+        
+        <label for="documentoTipo">Tipo de Documento:</label>
+        <select id="documentoTipo" name="documentoTipo" th:value="${employee.documentoTipo}" required>
+            <option value="RC">Registro Civil</option>
+            <option value="TI">Tarjeta de Identidad</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="CE">Cédula de Extranjería</option>
+        </select>
+
+        <label for="documentoNumero">Número de Documento:</label>
+        <input type="text" id="documentoNumero" name="documentoNumero" th:value="${employee.documentoNumero}" required>
+
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" th:value="${employee.nombres}" required>
+        
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" th:value="${employee.apellidos}">
+        
+        <label for="departamento">Departamento:</label>
+        <select id="departamento" name="departmentId">
+            <option th:each="dep : ${departamentos}" 
+                    th:value="${dep.departmentId}" 
+                    th:text="${dep.departmentNombre}" 
+                    th:selected="${dep.departmentId == employee.department.departmentId}"></option>
+        </select>
+
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" th:value="${employee.ciudad}">
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" th:value="${employee.direccion}">
+
+        <label for="correoElectronico">Correo Electrónico:</label>
+        <input type="email" id="correoElectronico" name="correoElectronico" th:value="${employee.correoElectronico}" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" th:value="${employee.telefono}">
+ 
+        <button type="submit">Actualizar</button>
+        <a th:href="@{/empleados}">Cancelar</a>
+    </form>
+</body>
+</html>
