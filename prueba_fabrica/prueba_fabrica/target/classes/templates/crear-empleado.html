@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Empleado</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Crear Nuevo Empleado</h2>
+    <form th:action="@{/empleados/guardar}" th:object="${employee}" method="post">
+        
+        <label for="documentoTipo">Tipo de Documento:</label>
+        <select id="documentoTipo" th:field="*{documentoTipo}" required>
+            <option value="RC">Registro Civil</option>
+            <option value="TI">Tarjeta de Identidad</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="CE">Cédula de Extranjería</option>
+        </select>
+
+        <label for="documentoNumero">Número de Documento:</label>
+        <input type="text" id="documentoNumero" th:field="*{documentoNumero}" required/>
+
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" th:field="*{nombres}" required/>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" th:field="*{apellidos}" />
+
+        <label for="department">Departamento:</label>
+        <select id="department" name="departmentId" required>
+            <option th:each="dep : ${departamentos}" 
+                    th:value="${dep.departmentId}" 
+                    th:text="${dep.departmentNombre}">
+            </option>
+        </select>
+
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" th:field="*{ciudad}" />
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" th:field="*{direccion}" />
+
+        <label for="correoElectronico">Correo Electrónico:</label>
+        <input type="email" id="correoElectronico" th:field="*{correoElectronico}" required/>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" th:field="*{telefono}" />
+
+        <button type="submit">Guardar</button>
+        <a th:href="@{/empleados}">Cancelar</a>
+    </form>
+</body>
+</html>

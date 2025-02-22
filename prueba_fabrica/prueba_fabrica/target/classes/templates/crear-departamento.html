@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nuevo Departamento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Crear Nuevo Departamento</h2>
+    <form th:action="@{/departamentos/guardar}" th:object="${department}" method="post">
+        
+        <label for="departmentCodigo">Código Departamento:</label>
+        <input type="text" id="departmentCodigo" th:field="*{departmentCodigo}" required/>
+
+        <label for="departmentNombre">Nombre Departamento:</label>
+        <input type="text" id="departmentNombre" th:field="*{departmentNombre}" required/>
+
+
+        <button type="submit">Guardar</button>
+        <a th:href="@{/departamentos}">Cancelar</a>
+    </form>
+</body>
+</html>
